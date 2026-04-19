@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Nutricional - Coliseu Fitness</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <h1>Calculadora Nutricional</h1>
+        <form id="nutriForm">
+            <div class="grid">
+                <div class="input-group">
+                    <label for="weight">Peso (kg):</label>
+                    <input type="number" id="weight" step="0.1" required>
+                </div>
+                <div class="input-group">
+                    <label for="height">Altura (cm):</label>
+                    <input type="number" id="height" required>
+                </div>
+                <div class="input-group">
+                    <label for="age">Idade:</label>
+                    <input type="number" id="age" required>
+                </div>
+                <div class="input-group">
+                    <label for="gender">Gênero:</label>
+                    <select id="gender" required>
+                        <option value="male">Masculino</option>
+                        <option value="female">Feminino</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="activity">Nível de Atividade:</label>
+                <select id="activity" required>
+                    <option value="1.2">Sedentário</option>
+                    <option value="1.375">Leve</option>
+                    <option value="1.55">Moderado</option>
+                    <option value="1.725">Ativo</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="goal">Objetivo:</label>
+                <select id="goal" required>
+                    <option value="0">Manutenção</option>
+                    <option value="-0.1">Déficit Leve (-10%)</option>
+                    <option value="-0.2">Déficit Moderado (-20%)</option>
+                    <option value="-0.3">Déficit Agressivo (-30%)</option>
+                    <option value="0.1">Superávit Leve (+10%)</option>
+                </select>
+            </div>
+
+            <button type="submit">Calcular Plano</button>
+        </form>
+
+        <section id="resultArea" class="hidden">
+            <div class="card result-card">
+                <h3>Resumo Diário</h3>
+                <p>TMB: <span id="resTMB"></span> kcal</p>
+                <p><strong>Meta: <span id="resGET"></span> kcal</strong></p>
+                <div class="action-buttons">
+        <button onclick="window.print()" class="btn-print">🖨️ Imprimir Plano</button>
+        <button id="btnPDF" class="btn-pdf">📄 Gerar PDF</button>
+        <button id="btnWhatsApp" class="btn-wa">📱 Enviar para Aluno (WhatsApp)</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+                <div class="macro-grid">
+    <div class="macro-item">
+        <p>Proteína</p>
+        <span id="resP"></span>g (<span id="percP"></span>%)
+    </div>
+    <div class="macro-item">
+        <p>Gordura</p>
+        <span id="resG"></span>g (<span id="percG"></span>%)
+    </div>
+    <div class="macro-item">
+        <p>Carbo</p>
+        <span id="resC"></span>g (<span id="percC"></span>%)
+    </div>
+</div>
+            </div>
+            
+            <div class="card meal-card">
+                <h3>Sugestão de Café da Manhã</h3>
+                <div id="resMeal"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="database.js"></script>
+    <script src="engine.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
